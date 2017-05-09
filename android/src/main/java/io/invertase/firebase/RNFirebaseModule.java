@@ -33,7 +33,7 @@ public class RNFirebaseModule extends ReactContextBaseJavaModule implements Life
     GoogleApiAvailability gapi = GoogleApiAvailability.getInstance();
     int status = gapi.isGooglePlayServicesAvailable(getReactApplicationContext());
 
-    if (status != ConnectionResult.SUCCESS && gapi.isUserResolvableError(status)) {
+    if (status != ConnectionResult.SUCCESS && gapi.isUserResolvableError(status) && getCurrentActivity() != null) {
       gapi.getErrorDialog(getCurrentActivity(), status, 2404).show();
     }
   }
